@@ -13,26 +13,59 @@ class PostController extends Controller
      */
     public function index()
     {
-
+        //___________________________________________________________
+        //METODO DE ELIMINAR 
         //PARA INDICAR LA VISTA 
         //control shif tecla hacia abajo para rellenar
 
-        Post::create(
+        $post = Post::find(3);
+        $post->delete();
 
-            [
-                'title' => 'test title',
-                'slug' => 'test slug',
-                'descripcion' => 'test descripcion',
-                'category_id' => 1,
-                'content' => 'test title',
-                'image' => 'test image',
-                'posted' => 'not',
 
-            ]
-        );
 
+        //____________________________________________________________
+        //_____________________________________________________________
+        //METODO DE ACTUALIZAR 
+
+        // //SELECT * FROM WHERE  ID=1
+        // $post = Post::find(1); //funcion de busqueda por medio del ORM ELOQUEN
+
+        // //dd($post);
+
+        // $post->update(
+
+        //     [
+        //         'title' => 'test title new',
+        //         'slug' => 'test slug',
+        //         'descripcion' => 'test descripcion',
+        //         'image' => 'test image',
+
+
+        //     ]
+        // );
+
+        //dd($post->title);  // funcion de ayuda para ver las propiedades del objeto
+        //__________________________________________________________________________
         return 'index';
     }
+
+    //______________________________________________________________________________
+    //METODO DE CREAR 
+
+    // Post::create(
+
+    //     [
+    //         'title' => 'test title',
+    //         'slug' => 'test slug',
+    //         'descripcion' => 'test descripcion',
+    //         'category_id' => 1,
+    //         'content' => 'test content',
+    //         'image' => 'test image',
+    //         'posted' => 'not',
+
+    //     ]
+    // );
+    //________________________________________________________________________________
 
     /**
      * Show the form for creating a new resource.
