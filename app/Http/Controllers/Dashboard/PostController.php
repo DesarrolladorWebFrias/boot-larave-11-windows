@@ -18,7 +18,7 @@ class PostController extends Controller
         $post = Post::find(1);
         $category = Category::find(1);
 
-        dd($category->posts[0]->title);
+        //dd($category->posts[0]->title);
         //no podemos obtener el objeto 
 
         //___________________________________________________________
@@ -95,7 +95,33 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+
+        //DOS FORMS DE ACCDER MEDIANTE LA VARIABLE $REQUEST O LA FUNCION REQUEST 
+        //dd($request->all());
+
+
+        Post::create($request->all());  //funcion simplificada 
+
+        //SE REALIZA UNA REDIRECCION
+        return to_route('post.index');
+
+
+
+        //Post::create(
+
+        //SE TRABAJARAN CON VARIABLES DEL FORMULARIO 
+
+        //         [
+        //             'title' => $request->all()['title'],
+        //             'slug' => $request->all()['slug'],
+        //             'descripcion' => $request->all()['descripcion'],
+        //             'category_id' => $request->all()['category_id'],
+        //             'content' => $request->all()['content'],
+        //             //'image' => $request->all()['image'],
+        //             'posted' => $request->all()['posted'],
+
+        //         ]
+        //     );
     }
 
     /**
