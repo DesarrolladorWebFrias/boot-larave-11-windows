@@ -12,8 +12,13 @@
 <label for="">content</label>
 <textarea name="content"></textarea>
 
-<label for="">Categoria</label>
+<label for="">Category</label>
 <select name="category_id">
+
+
+    @foreach ($categories as $title=>$id) //se separa el valor de la clave 
+       <option value="{{$id}}">{{$title}}</option>   //como se manipula 
+    @endforeach
 
 </select>
 

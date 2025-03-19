@@ -79,9 +79,15 @@ class PostController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
+
     {
-        //
-        return view('dashboard.post.create');
+
+        //CREAMOS UNA VARIABLE LLAMADA CATEGORIA QUE SEA IGUAL A CATEGOY Y QUE ME LAS PASE TODAS POR LA URL
+        // $categories = Category::get(); // es muy similar a la funcion de find 
+
+        $categories = Category::pluck('id', 'title'); // es otro metodo y se le pasa parametos que pasa el id de la categoria y su titulo
+
+        return view('dashboard.post.create', compact('categories'));
     }
 
     /**
