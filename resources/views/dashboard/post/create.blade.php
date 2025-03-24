@@ -6,13 +6,13 @@
               @csrf
 
 <label for="">Title</label>
-<input type="text" name="title">
+<input type="text" name="title"  placeholder="TITULO">
 
 <label for="">Slug</label>
-<input type="text" name="slug">
+<input type="text" name="slug" placeholder="RUTA">
 
 <label for="">content</label>
-<textarea name="content"></textarea>
+<textarea name="content" placeholder="ESCRIBA EL CONTENIDO"></textarea>
 
 <label for="">Category</label>
 <select name="category_id">
@@ -25,13 +25,13 @@
 </select>
 
 <label for="">Descripcion</label>
-<textarea name="descripcion"></textarea>
+<textarea name="descripcion" placeholder="DESCRIPCION"></textarea>
 
 <label for="">Posted</label>
 <select name="posted">
-    <option value="yes">Yes</option>
     <option value="not">Not</option>
-    
+    <option value="yes">Yes</option>
+   
 </select>
 
 

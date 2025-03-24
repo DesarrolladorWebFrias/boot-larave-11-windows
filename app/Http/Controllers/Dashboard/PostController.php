@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Post\StoreRequest;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -16,7 +18,7 @@ class PostController extends Controller
     {
 
         $post = Post::find(1);
-        $category = Category::find(1);
+        // $category = Category::find(1);
 
         //dd($category->posts[0]->title);
         //no podemos obtener el objeto 
@@ -93,29 +95,27 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
+
+        Post::create($request->validated());  //funcion simplificada 
+
+        return to_route('post.index'); //SE REALIZA UNA REDIRECCION
 
         //DOS FORMS DE ACCDER MEDIANTE LA VARIABLE $REQUEST O LA FUNCION REQUEST 
         //dd($request->all());
 
-        $request->validate([
-            'title'  =>  'required|min:5|min:500',
-            'slug'   =>  'required|min:5!min:500',
-            'content' =>  'required|min:7',
-            'category_id' => 'required|integer',
-            'descripcion' => 'requerid|min:7',
-            'posted'    =>  'required'
+        // $request->validate([
+        //     'title'  =>  'required|min:5|min:500',
+        //     'slug'   =>  'required|min:5!min:500',
+        //     'content' =>  'required|min:7',
+        //     'category_id' => 'required|integer',
+        //     'descripcion' => 'required|min:7',
+        //     'posted'    =>  'required'
 
-        ]);
+        // ]);
 
-        echo 'not';
-
-        Post::create($request->all());  //funcion simplificada 
-
-
-        //SE REALIZA UNA REDIRECCION
-        return to_route('post.index');
+        // echo 'not';
 
 
 

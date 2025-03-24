@@ -9,7 +9,7 @@ class Post extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'slug', 'descripcion', 'content', 'image', 'category_id'];
+    protected $fillable = ['title', 'slug', 'descripcion', 'content', 'image', 'category_id', 'posted'];
 
 
     // ESE CREA UNA FUNCION PARA RETORNAR EL TIPO DE RELACION QUE VA A SOPORTAR 
