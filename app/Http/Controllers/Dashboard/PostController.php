@@ -17,7 +17,11 @@ class PostController extends Controller
     public function index()
     {
 
-        $post = Post::find(1);
+        $posts = Post::paginate(2);
+
+        return view('dashboard/post/index', compact('posts'));
+
+
         // $category = Category::find(1);
 
         //dd($category->posts[0]->title);
