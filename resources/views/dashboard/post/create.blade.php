@@ -2,18 +2,9 @@
 
 @section('content') 
 
+@include('dashboard.fragment._errors-form')
 
-
-@if ($errors->any())
-@foreach ($errors->all() as $e)
-<div>
-{{$e}}
-</div>
-@endforeach   
-@endif
-
-
-                 <form action="{{ route('post.store')}}" method="post"> 
+         <form action="{{ route('post.store')}}" method="post"> 
 
               @csrf
 
