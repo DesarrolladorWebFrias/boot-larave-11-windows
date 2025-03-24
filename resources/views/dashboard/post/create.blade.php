@@ -1,6 +1,18 @@
 @extends('dashboard.post.master')
 
 @section('content') 
+
+
+
+@if ($errors->any())
+@foreach ($errors->all() as $e)
+<div>
+{{$e}}
+</div>
+@endforeach   
+@endif
+
+
                  <form action="{{ route('post.store')}}" method="post"> 
 
               @csrf
