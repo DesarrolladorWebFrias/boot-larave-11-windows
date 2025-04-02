@@ -96,7 +96,8 @@ class PostController extends Controller
 
         $categories = Category::pluck('id', 'title'); // es otro metodo y se le pasa parametos que pasa el id de la categoria y su titulo
 
-        return view('dashboard.post.create', compact('categories'));
+        $post = new Post(); //creamos un nuevo objeto de tipo post y le pasamos los datos que nos llegan por el request
+        return view('dashboard.post.create', compact('categories', 'post'));
     }
 
     /**
