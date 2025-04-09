@@ -1,32 +1,32 @@
 @csrf
 
 <label for="">Title</label>
-<input type="text" name="title"  placeholder="TITULO" value="{{ $post->title }}" >
+<input type="text" name="title"  placeholder="TITULO" value="{{ old('title', $post->title) }}" >
 
 <label for="">Slug</label>
-<input type="text" name="slug" placeholder="RUTA"value="{{ $post->slug }}" >
+<input type="text" name="slug" placeholder="RUTA" value="{{ old('slug', $post->slug) }}" >
 
 
 <label for="">content</label>
-<textarea name="content" placeholder="ESCRIBA EL CONTENIDO" >{{$post->content}}</textarea>
+<textarea name="content" placeholder="ESCRIBA EL CONTENIDO" >{{ old ('content', $post->content) }}</textarea>
 
 <label for="">Category</label>
 <select name="category_id">
 
 
     @foreach ($categories as $title=>$id) //se separa el valor de la clave 
-       <option {{ $post->category_id == $id ? 'selected' : ''}}value="{{$id}}">{{$title}}</option>   //como se manipula 
+       <option {{ old ('category_id', $post->category_id) == $id ? 'selected' : ''}}value="{{$id}}">{{$title}}</option>   //como se manipula 
     @endforeach
 
 </select>
 
 <label for="">Descripcion</label>
-<textarea name="descripcion" placeholder="DESCRIPCION">{{$post->content}}</textarea>
+<textarea name="descripcion" placeholder="DESCRIPCION">{{old ('descripcion', $post->descripcion) }}</textarea>
 
 <label for="">Posted</label>
 <select name="posted">
-    <option {{$post->posted == 'not' ? 'selected' : ''}} value="not">Not</option>
-    <option {{$post->posted == 'yes' ? 'selected' : ''}} value="yes">Yes</option>   
+    <option {{old ('posted', $post->posted) == 'not' ? 'selected' : ''}} value="not">Not</option>
+    <option {{old ('posted', $post->posted) == 'yes' ? 'selected' : ''}} value="yes">Yes</option>   
 </select>
 <button type="submit" >Send</button>
 
