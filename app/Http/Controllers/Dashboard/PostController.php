@@ -188,6 +188,7 @@ $request->image->move(public_path('uploads/posts'), $filename);
      */
     public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return to_route('post.index');
     }
 }

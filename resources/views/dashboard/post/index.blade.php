@@ -48,6 +48,11 @@
         <td>
             <a href="{{ route('post.edit', $p->id) }}"> EDITAR</a>
             <a href="{{ route('post.show', $p->id) }}"> DETALLES</a>
+            <form action="{{ route('post.destroy', $p->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">ELIMINAR</button>
+            </form>
         </td>
     </tr>
         
