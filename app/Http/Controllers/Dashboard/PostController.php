@@ -94,7 +94,7 @@ class PostController extends Controller
         //CREAMOS UNA VARIABLE LLAMADA CATEGORIA QUE SEA IGUAL A CATEGOY Y QUE ME LAS PASE TODAS POR LA URL
         // $categories = Category::get(); // es muy similar a la funcion de find 
 
-        $categories = Category::pluck('id', 'title'); // es otro metodo y se le pasa parametos que pasa el id de la categoria y su titulo
+        $categories = Category::pluck('title', 'id'); // es otro metodo y se le pasa parametos que pasa el id de la categoria y su titulo
 
         $post = new Post(); //creamos un nuevo objeto de tipo post y le pasamos los datos que nos llegan por el request
         return view('dashboard.post.create', compact('categories', 'post'));
@@ -166,7 +166,20 @@ class PostController extends Controller
      */
     public function update(PutRequest $request, Post $post)
     {
-        $post->update($request->validated());
+
+        $data = $request->validated();
+        //dd($request->image);
+//validar si el usuario subio una imagen
+if(isset($data['image'])){
+$data['image'] = $filename = time().'.'. $data ['image']->extension();
+$request->image->move(public_path('uploads/posts'), $filename);
+
+}
+ 
+//image
+
+
+        $post->update($data);
         return to_route('post.index');
     }
 
