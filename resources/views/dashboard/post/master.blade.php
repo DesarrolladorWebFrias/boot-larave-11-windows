@@ -6,7 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
 </head>
+
 <body>
+    @session('key')
+    {{$value}}
+        
+    @endsession
+
+    @if (session('status'))
+    {{session('status')}}        
+    @endif
+
     @yield('content')
 
 <section>

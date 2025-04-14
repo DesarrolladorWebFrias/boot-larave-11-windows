@@ -35,7 +35,7 @@ class CategoryController extends Controller
     public function store(StoreRequest $request)
     {
         Category::create($request->validated());  //funcion simplificada 
-        return to_route('category.index'); //SE REALIZA UNA REDIRECCION
+        return to_route('category.index')->with('status', 'Categoría creada con éxito'); //SE REALIZA UNA REDIRECCION
     }
 
     /**
@@ -51,7 +51,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        return view('dashboard.category.edit', compact( 'category'));
+        return view('category.edit', compact( 'category'));
     }
 
     /**
@@ -60,7 +60,7 @@ class CategoryController extends Controller
     public function update(PutRequest $request, Category $category)
     {
         $category->update($request->validated());
-        return to_route('category.index');
+        return to_route('category.index')->with('status', 'Categoría Actualizada con éxito');
     }
 
     /**
@@ -69,6 +69,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return to_route('category.index');
+        return to_route('category.index')->with('status', 'Categoría Eliminada con éxito');
     }
 }

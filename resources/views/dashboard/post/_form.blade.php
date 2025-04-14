@@ -14,8 +14,8 @@
 <select name="category_id">
 
 
-    @foreach ($categories as $title=>$id) //se separa el valor de la clave 
-       <option {{ old ('category_id', $post->category_id) == $id ? 'selected' : ''}}value="{{$id}}">{{$title}}</option>   //como se manipula 
+    @foreach ($categories as $title => $id) //se separa el valor de la clave 
+       <option {{ old ('category_id', $post->category_id) == $id ? 'selected' : ''}} value="{{$id}}">{{ $title }}</option>   //como se manipula 
     @endforeach
 
 </select>

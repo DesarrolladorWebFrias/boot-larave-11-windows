@@ -20,6 +20,7 @@ class PostController extends Controller
     public function index()
     {
 
+        session(['key' => 'value']);
         $posts = Post::paginate(2);
 
         return view('dashboard/post/index', compact('posts'));
@@ -94,7 +95,9 @@ class PostController extends Controller
         //CREAMOS UNA VARIABLE LLAMADA CATEGORIA QUE SEA IGUAL A CATEGOY Y QUE ME LAS PASE TODAS POR LA URL
         // $categories = Category::get(); // es muy similar a la funcion de find 
 
-        $categories = Category::pluck('title', 'id'); // es otro metodo y se le pasa parametos que pasa el id de la categoria y su titulo
+        $categories = Category::pluck('id', 'title'); // es otro metodo y se le pasa parametos que pasa el id de la categoria y su titulo
+
+
 
         $post = new Post(); //creamos un nuevo objeto de tipo post y le pasamos los datos que nos llegan por el request
         return view('dashboard.post.create', compact('categories', 'post'));
@@ -108,7 +111,7 @@ class PostController extends Controller
 
         Post::create($request->validated());  //funcion simplificada 
 
-        return to_route('post.index'); //SE REALIZA UNA REDIRECCION
+        return to_route('post.index')->with('status', 'Post creado con exito'); //SE REALIZA UNA REDIRECCION
 
         //DOS FORMS DE ACCDER MEDIANTE LA VARIABLE $REQUEST O LA FUNCION REQUEST 
         //dd($request->all());
@@ -151,7 +154,7 @@ class PostController extends Controller
     {
         return view('dashboard.post.show', ['post' => $post]);
         //return view('dashboard/post/show', ['post'=> $post]); 
-         
+
     }
 
     /**
@@ -171,18 +174,17 @@ class PostController extends Controller
 
         $data = $request->validated();
         //dd($request->image);
-//validar si el usuario subio una imagen
-if(isset($data['image'])){
-$data['image'] = $filename = time().'.'. $data ['image']->extension();
-$request->image->move(public_path('uploads/posts'), $filename);
+        //validar si el usuario subio una imagen
+        if (isset($data['image'])) {
+            $data['image'] = $filename = time() . '.' . $data['image']->extension();
+            $request->image->move(public_path('uploads/posts'), $filename);
+        }
 
-}
- 
-//image
+        //image
 
 
         $post->update($data);
-        return to_route('post.index');
+        return to_route('post.index')->with('status', 'Post Actualizado correctamente');
     }
 
     /**
@@ -191,6 +193,6 @@ $request->image->move(public_path('uploads/posts'), $filename);
     public function destroy(Post $post)
     {
         $post->delete();
-        return to_route('post.index');
+        return to_route('post.index')->with('status', 'Post Eliminado correctamente');
     }
 }
