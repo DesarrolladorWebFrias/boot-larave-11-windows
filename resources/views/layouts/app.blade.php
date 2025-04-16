@@ -28,12 +28,8 @@
             @endisset
 
             <!-- Page Content -->
-            <main>
-                @if (session('status'))
-                {{session('status')}}        
-                @endif
-            
-                @yield('content')
+            <main>fgdsgsdfsdf
+                {{ $slot }}
             </main>
         </div>
     </body>
